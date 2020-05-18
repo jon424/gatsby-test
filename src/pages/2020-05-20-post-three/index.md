@@ -2,7 +2,7 @@
 path: "/post-three"
 date: "2020-05-19"
 title: "My Third Gatsby Post"
-author: "sheeeeit!"
+author: "Hi again!"
 ---
 
 This is my **third** post!
