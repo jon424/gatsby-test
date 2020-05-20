@@ -1,22 +1,26 @@
-import React from 'react';
-import Link from 'gatsby-link'
-import { graphql } from 'gatsby'
+import React, { useState, useEffect } from 'react';
+import Link from 'gatsby-link';
+import { graphql } from 'gatsby';
 
-export default function Template({ data }) {
+
+const Template = ({ data }) => {
+
   const post = data.markdownRemark
 
-  return(
+  return (
     <div>
-    <Link to="/blog">Go Back</Link>
-    <hr />
-    <h1>{post.frontmatter.title}</h1>
-    <h4>Posted by {post.frontmatter.author} on {post.frontmatter.date}</h4>
-    <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Link to="/blog">Go Back</Link>
+      <hr />
+      <h1>{post.frontmatter.title}</h1>
+      <h4>Posted by {post.frontmatter.author} on {post.frontmatter.date}</h4>
+      <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </div>
   )
 }
 
-export const postQuery = graphql `
+export default Template;
+
+export const postQuery = graphql`
 query BlogPostByPath($path: String!) {
   markdownRemark(frontmatter: { path: { eq: $path }}) {
     html
@@ -25,6 +29,7 @@ query BlogPostByPath($path: String!) {
       title
       author
       date
+      slug
     }
   }
 }`
